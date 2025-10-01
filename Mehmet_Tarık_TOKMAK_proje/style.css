@@ -1,0 +1,227 @@
+@charset "utf-8";
+/* CSS Document */
+body{										/*Sayfanın arkaplan ve genel yazı tipi ayarları.*/
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: #16302B;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+#container{									/*Saatlerin yer aldığı ana kutu. (arka plan siyah)*/
+	margin: 100px;
+	background: rgba(0,0,0,1);
+	box-shadow: 0 8px 20px rgba(0,0,0,1);
+	border-radius: 55px;
+	justify-content: center;
+	display: flex;
+	gap: 40px;
+	margin-top: 150px;
+	overflow: hidden;
+}
+.snow1{										/*snow1-3: Kar yağıyor efekti. (3 katmanlı animasyon)*/
+	background: url("assets/snow1.png");
+	background-repeat: repeat;
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	animation: kar1 10s infinite linear;
+}
+.snow2{
+	background: url("assets/snow1.png");
+	background-repeat: repeat;
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;											
+	left: 0;
+	z-index: -1;
+	animation: kar2 10s infinite linear;
+	background-size: 300px;
+	filter: blur(1px);
+}
+.snow3{
+	background: url("assets/snow1.png");
+	background-repeat: repeat;
+	width: 100%;
+	height: 100vh;
+	position: fixed;							
+	top: 0;
+	left: 0;
+	z-index: -1;
+	animation: kar3 10s infinite linear;
+	background-size: 800px;
+	filter: blur(2px);
+}
+#footer {									/*Sayfanın en altındaki iletişim ve sosyal medya bölümü.*/
+  width: 100%;
+  height: auto;
+  background: #000;
+  margin-top: 100px;
+  padding: 40px;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.footer_content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer_content h2 {
+  margin-bottom: 20px;
+}
+
+.footer_content p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.sosyal {
+  margin-top: 20px;
+}
+
+.sosyal a {
+  display: inline-block;
+  margin: 0 10px;
+  transition: transform 0.3s;
+}
+.sosyal img {
+  width: 32px;
+  height: 32px;
+}
+#nav{										/*Sticky üst menü (navbar) tasarımı.*/
+	width: 100%;
+	height: 100px;
+	background: rgba(0,0,0,1);
+	border-top: 1px solid rgba(0,0,0,.2);
+	border-bottom: 1px solid rgba(0,0,0,.2);
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+nav ul{
+	display: flex;
+	padding: 0px;
+	justify-content: center;			
+	width: 100%;
+	align-items: center;
+	gap:100px;
+}
+nav ul li{
+	list-style: none;
+}
+nav ul li a{								/*Menüdeki bağlantılar ve hover efektleri.*/
+	display: block;
+	color: #fff;
+	padding: 0 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height: 50px;
+}
+nav ul li a:hover,
+nav ul li a.active{
+	background: rgba(255,255,255,0.15);		
+	border-radius: 55px;
+}
+.saat {										/*Her bir saat kartı. (resim + açıklama)*/
+  position: relative;
+  width: 300px;
+  height: 400px;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  margin: 40px;
+}
+
+.saat .image {								/*Saat görseli arka plan olarak gösterilir.*/
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: filter 0.3s ease;
+}
+
+.saat .overlay {							/*Saat üzerine gelindiğinde açıklama kutusu.*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.saat:hover .image {
+  filter: blur(4px);
+}
+
+.saat:hover .overlay {
+  opacity: 1;
+}
+@keyframes kar1{
+	0%{background-position: 0px 0px;}
+	100%{background-position: 100px 100vh;}
+}
+@keyframes kar2{
+	0%{background-position: 0px -100px;}
+	100%{background-position: 0px 100vh;}
+}
+@keyframes kar3{
+	0%{background-position: 0px 100px;}
+	100%{background-position: 300px 100vh;}
+}
+@keyframes parilti {								/*Footer başlığına parıltı animasyonu ekler.*/
+  0%   { opacity: 1; text-shadow: 0 0 5px #fff; }
+  50%  { opacity: 0.7; text-shadow: 0 0 20px #fff; }
+  100% { opacity: 1; text-shadow: 0 0 5px #fff; }
+}
+
+.footer_content h2 {
+  animation: parilti 2s ease-in-out infinite;
+}
+@media (max-width: 768px){							/*Tablet ve mobil cihazlar için responsive tasarım.*/
+	nav ul{
+		flex-direction: column;
+		gap: 10px;
+		padding: 10px;
+	}
+	#container{
+		flex-direction: column;
+		align-items: center;
+		margin: 50px 0;
+	}
+	.saat{
+		margin: 20px 0;
+		width: 90%;
+		height: auto;
+		aspect-raito: 3/4;
+	}
+	.footer_content{
+		padding: 20px;
+		font-size: 14px;
+	}
+	.sosyal img{
+		width: 24px;
+		height: 24px;
+	}
+	nav ul li img{
+		width: 150px;
+		height: auto;
+	}
+}
